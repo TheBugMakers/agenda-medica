@@ -72,7 +72,7 @@
       </v-menu>
     </v-app-bar>
     <v-main>
-      <login-view></login-view>
+      <router-view/>
     </v-main>
     <v-footer padless>
     <v-col
@@ -97,9 +97,9 @@
 </template>
 
 <script>
-import LoginView from './views/LoginView.vue'
+
   export default {
-  components: { LoginView },
+  components: {},
     data () {
       return {
         drawer: null,

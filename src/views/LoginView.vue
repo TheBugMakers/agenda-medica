@@ -22,7 +22,8 @@
                             <v-col cols="12" sm="5">
                               <span class="caption blue--text">Esqueceu sua senha?</span>
                             </v-col>
-                            <v-btn color="blue" dark block tile>Logar</v-btn>
+                            <v-btn color="blue" dark block tile
+                            @click="to='/profile'"><router-link to="/profile" class="text-decoration-none white--text">Logar</router-link></v-btn>
                             <h5 class="text-center grey--text mt-4 mb-3">Outras formas de login</h5>
                           </v-row>
                           <v-row>
