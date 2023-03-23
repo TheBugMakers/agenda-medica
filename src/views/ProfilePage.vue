@@ -1,8 +1,9 @@
 <template>
     <div>
         <v-container class="mt-3">
-            <v-row alignt="center" justify="center">
-                <v-col cols="12" class="blue-grey lighten-5 rounded-lg">
+            <v-card>
+                <v-row alignt="center" justify="center">
+                <v-col cols="12" class="grey lighten-5 rounded-lg border-black" >
                     <v-row>
                         <v-col cols="1">
                             <v-avatar
@@ -19,13 +20,13 @@
                                 <h3 class="mb-1">Usuario User Userio</h3>
                             </v-row>
                             <v-row>
-                                <h6 class="mb-1">UserTeste@gmail.com</h6>
+                                <h6 class="mb-1 grey--text">UserTeste@gmail.com</h6>
                             </v-row>
                             <v-row>
-                                <v-col cols="12" class="">
-                                    <v-row>
-                                       <div class="d-flex justify-space-between">
-                                        <v-btn outlined class="mt-1 white" color="primary" depressed small><router-link to="/" class="text-decoration-none">Go to Home</router-link></v-btn>
+                                <v-col cols="1" class="d-flex justify-start">
+                                    <v-row class="d-flex justify-start">
+                                       <div class="d-flex justify-start">
+                                        <v-btn class="ma-2" outlined color="indigo" to="/" small>Voltar</v-btn>
                                        </div>
                                     </v-row>
                                 </v-col>
@@ -58,6 +59,7 @@
                     </v-row>
                 </v-col>
             </v-row>
+            </v-card>
         </v-container>
     </div>
 </template>

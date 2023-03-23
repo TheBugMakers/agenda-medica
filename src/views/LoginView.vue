@@ -22,14 +22,10 @@
                             <v-col cols="12" sm="5">
                               <span class="caption blue--text">Esqueceu sua senha?</span>
                             </v-col>
-                            <v-btn color="blue" dark block tile
-                            @click="to='/profile'"><router-link to="/profile" class="text-decoration-none white--text">Logar</router-link></v-btn>
-                            <h5 class="text-center grey--text mt-4 mb-3">Outras formas de login</h5>
+                            <v-btn color="blue" dark block tile to="/profile">Logar</v-btn>
+                            <!-- <h5 class="text-center grey--text mt-4 mb-3">Outras formas de login</h5> -->
                           </v-row>
                           <v-row>
-                            <v-btn depressed outlined color="grey" class="mb-2">
-                              <v-icon color="red">fab fa-google</v-icon>
-                            </v-btn>
                           </v-row>
                         </v-col>
                       </v-row>
@@ -38,10 +34,10 @@
                   <v-col cols="12" sm="6" class="blue">
                     <div style="text-align:center; padding: 180px 0;">
                       <v-card-text class="white--text">
-                        <h3 class="center">Não tem uma conta? Se cadastre aqui</h3>
+                        <h3 class="center">AgendaMedico</h3>
                       </v-card-text>
                       <div class="text-center">
-                        <v-btn tile outlined dark @click="step++" class="white blue--text">Cadastrar</v-btn>
+                        <!-- <v-btn tile outlined dark @click="step++" class="white blue--text">Cadastrar</v-btn> -->
                       </div>
                     </div>
                   </v-col>
