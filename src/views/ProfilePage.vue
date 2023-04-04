@@ -3,14 +3,15 @@
         <v-container class="mt-3">
             <v-card>
                 <v-row alignt="center" justify="center">
-                <v-col cols="12" class="grey lighten-5 rounded-lg border-black" >
+                <v-col cols="12" class="grey lighten-5 rounded-lg border-black">
                     <v-row>
-                        <v-col cols="1">
+                        <v-col cols="1" class="" xs="12">
                             <v-avatar
                                 color="primary"
-                                size="70"
+                                size="100%"
+                                class="d-none d-lg-block"
                             >
-                            <v-icon dark size="60">
+                            <v-icon dark size="400%">
                             mdi-account-circle
                             </v-icon>
                         </v-avatar>
