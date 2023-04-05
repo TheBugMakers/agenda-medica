@@ -7,9 +7,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import('@/views/ClientsView.vue')
+    name: 'login',
+    component: () => import('@/views/Login.vue')
   },
+  {
+  path: '/calendar',
+  name: 'calendar',
+  component: () => import('@/views/CalendarView.vue')
+  },
+  {
+    path: '/appointment/:appointment_id',
+    name: 'appointment_detail',
+    component: () => import('@/views/AppointmentDetail.vue')
+  }
 ]
 
 const router = new VueRouter({
