@@ -1,114 +1,109 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="desserts"
-    :items-per-page="5"
-    class="elevation-1"
-  ></v-data-table>
+  <div>
+    <v-container>
+      <v-row align="center" justify="center">
+        <v-col cols="12" sm="10">
+          <v-card class="elevation-6 mt-10">
+            <v-window v-model="step">
+              <v-window-item :value="1">
+                <v-row>
+                  <v-col cols="12" sm="6">
+                    <v-card-text class="mt-12">
+                      <h4 class="text-center">Login</h4>
+                      <h6 class="text-center grey--text">Logar na sua conta</h6>
+                      <v-row align="center" justify="center">
+                        <v-col cols="12" sm="8">
+                          <v-text-field label="Email" outlined dense color="blue" autocompleto="false" class="mt-16"></v-text-field>
+                          <v-text-field label="senha" outlined dense color="blue" autocomplete="false" type="password"></v-text-field>
+                          <v-row>
+                            <v-col cols="12" sm="7">
+                              <v-checkbox label="Lembrar login" class="mt-n1" color="blue"></v-checkbox>
+                            </v-col>
+                            <v-col cols="12" sm="5">
+                              <span class="caption blue--text">Esqueceu sua senha?</span>
+                            </v-col>
+                            <v-btn color="blue" dark block tile to="/profile">Logar</v-btn>
+                            <!-- <h5 class="text-center grey--text mt-4 mb-3">Outras formas de login</h5> -->
+                          </v-row>
+                          <v-row>
+                          </v-row>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="blue">
+                    <div style="text-align:center; padding: 180px 0;">
+                      <v-card-text class="white--text">
+                        <h3 class="center">AgendaMedico</h3>
+                      </v-card-text>
+                      <div class="text-center">
+                        <!-- <v-btn tile outlined dark @click="step++" class="white blue--text">Cadastrar</v-btn> -->
+                      </div>
+                    </div>
+                  </v-col>
+                </v-row>
+              </v-window-item>
+              <v-window-item :value="2">
+                <v-row>
+                  <v-col cols="12" sm="6" class="blue">
+                    <div style="text-align: center; padding: 180px 0;">
+                      <v-card-text class="white--text">
+                        <h3 class="text-center">Logar</h3>
+                      </v-card-text>
+                      <div class="text-center">
+                        <v-btn tile outlined dark @click="step--">Logar</v-btn>
+                      </div>
+                    </div>
+                  </v-col>
+                  <v-col cols="12" sm="6" class="white">
+                    <v-card-text class="mt-12">
+                      <h3 class="text-center"> Crie uma conta</h3>
+                      <h6 class="text-center grey--text">vamos criar sua conta</h6>
+                      <v-row align="center" justify="center">
+                        <v-col cols="12" sm="8">
+                          <v-row>
+                            <v-col cols="12" sm="6">
+                              <v-text-field outlined label="primeiro nome" color="blue" dense></v-text-field>
+                            </v-col>
+                            <v-col cols="12" sm="6">
+                              <v-text-field outlined label="Sobrenome" color="blue" dense></v-text-field>
+                            </v-col>
+                          </v-row>
+                          <v-text-field outlined label="email" color="blue"></v-text-field>
+                          <v-text-field outlined label="senha" color="blue" type="password"></v-text-field>
+                          <v-row>
+                            <v-col cols="12" sm="7">
+                              <v-checkbox label="Aceitar termos" class="mt-n1" color="blue"></v-checkbox>
+                            </v-col>
+                            
+                            <v-col cols="12" sm="7">
+                              <span class="caption blue--text ml-n4"> Termos e condições </span>
+                            </v-col>
+                          </v-row>
+                          <v-btn color="blue" dark block tile>Cadastrar</v-btn>
+                        </v-col>
+
+                      </v-row>
+                    </v-card-text>
+                  </v-col>
+                </v-row>
+              </v-window-item>
+            </v-window>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
-  export default {
-    name: "LoginView",
+export default {
+  name: "LoginView",
 
-    data () {
-      return {
-        headers: [
-          {
-            text: 'Dessert (100g serving)',
-            align: 'start',
-            sortable: false,
-            value: 'name',
-          },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
-        ],
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: 1,
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: 1,
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: 7,
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: 8,
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: 16,
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: 0,
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: 2,
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: 45,
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: 22,
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: 6,
-          },
-        ],
-      }
-    },
-  }
+  data: ()=>({
+    step: 1
+  })
+}
 </script>
+<style>
+</style>
