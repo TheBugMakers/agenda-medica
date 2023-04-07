@@ -98,6 +98,7 @@
 
 <script>
 export default {
+  name: "LoginView",
 
   data: ()=>({
     step: 1
