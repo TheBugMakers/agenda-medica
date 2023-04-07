@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'login',
-    component: () => import('@/views/Login.vue')
+    component: () => import('@/views/LoginView.vue')
   },
   {
   path: '/calendar',
