@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <v-row>
-      <v-col cols="12" sm="6">
+  <div class="white">
+    <v-row class="">
+      <v-col cols="12" sm="12">
         <v-card-text class="mt-12">
           <h4 class="text-center">Login</h4>
           <h6 class="text-center grey--text">Logar na sua conta</h6>
@@ -14,6 +14,7 @@
                 color="blue"
                 autocompleto="false"
                 class="mt-16"
+                white
               ></v-text-field>
               <v-text-field
                 label="senha"
@@ -48,6 +49,8 @@
 
 <script>
 export default {
+  name: "LoginView",
+
   data: () => ({
     step: 1,
   }),

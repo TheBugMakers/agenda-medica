@@ -4,6 +4,11 @@
 
 <script>
 export default {
-  name: "ClientsView",
+  name: "CalendarView",
+
 }
 </script>
+
+<style>
+
+</style>
