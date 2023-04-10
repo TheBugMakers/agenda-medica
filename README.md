@@ -2,7 +2,7 @@
 ## Versão: 1.0 
 ## Status do Projeto:  ⚠️ Espera 
 
-✔️ Concluído ❌ Cancelado
+✔️ Concluído ❌ Cancelado ⚠️ Espera 
 
 ## Tópicos
 🔹 Descrição do projeto 
