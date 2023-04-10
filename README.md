@@ -81,18 +81,23 @@ node.js
 Tela de login mal posicionada
 
 ## Recursos de inseridos 🧰
-Se for o caso, liste tarefas/funcionalidades que ainda precisam ser implementadas na sua aplicação, insira fotos da tela do app.
 
-📝 Tarefa 1
+📝 Tela de Cadastro
 
-📝 Tarefa 2
+📝 Tela de Calendario
 
-📝 Tarefa 3
+📝 Tela de Cadastro de receitas
+
+📝 Tela de Cadastro de relatorios
+
 
 ## Desenvolvedores/Contribuintes:
 Ana 
+
 Felipe
+
 Gabriel
+
 Helena
 
 ## Licença
