@@ -11,9 +11,9 @@
             <v-col>
               <div class="mb-5">
                 <p style="font-size: 40px; font-weight: 600">
-                  VRI management system
+                  Agenda MED
                 </p>
-                <h2>5D Ecography</h2>
+                <h2>Medical appointment system</h2>
               </div>
               <v-row
                 align="center"
@@ -22,7 +22,7 @@
                 :key="service.icon"
               >
                 <v-col cols="2">
-                  <v-avatar size="36px" color="#CE5EDC">
+                  <v-avatar size="36px" color="#1F87FF">
                     <v-icon dark size="16px">
                       {{ service.icon }}
                     </v-icon>
@@ -38,14 +38,14 @@
         </div>
       </v-col>
       <v-col class="pb-0" cols="4">
-        <login-view></login-view>
+        
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import LoginView from "@/views/LoginView.vue";
+//import LoginView from "@/views/LoginView.vue";
 
 export default {
   data: () => ({
@@ -69,7 +69,7 @@ export default {
     ],
   }),
   components: {
-    LoginView,
+    
   },
 };
 </script>
@@ -77,7 +77,7 @@ export default {
 <style>
 #div {
   display: flex;
-  color: white;
+  color: #1f87ff;
   align-items: center;
   justify-content: center;
 }
