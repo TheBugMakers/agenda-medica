@@ -37,71 +37,63 @@
 Insira os tópicos do README em links para facilitar a navegação do leitor
 
 ## Descrição do projeto
-projeto via web de agendamento médico que também dá a liberdade para os pacientes de administrarem as próprias consultas
+Aplicação web de agendamento médico que também dá a liberdade para os pacientes de administrarem as próprias consultas.
 
 ## Funcionalidades ⚙️
-⚠️ Cliente se cadastrar
-
-⚠️ Cliente e Dono entrarem no sistema
-
-⚠️ Cliente poder ver suas informações
-
-⚠️ Médico e Cliente agendar consultas e remarcar
-
-⚠️ Médico cadastrar receitas e relatorios
+⚠️ Cliente se cadastrar;
+⚠️ Cliente e Clínica entrarem no sistema;
+⚠️ Cliente poder ver suas informações;
+⚠️ Médico e Cliente agendarem consultas e remarcar;
+⚠️ Médico cadastrar receitas e relatórios;
 
 ## Distribuição
-Indisponivel
+(Indisponivel)
 
-## Pré-requisitos ⚠️    
-Navegador
-Acesso internet
+## Pré-requisitos ⚠️  
+Navegador;
+Acesso à internet;
 Aparelho utilizado para testes.
-- Recomendamos acessar por um computador
+(Recomendamos acessar por um computador)
 
 ## Como rodar a aplicação 
-O usuario deve acessar o link [link] e colocar seu login nos campos corretos e clicar em logar. Caso o usuario não tenha um login ele deve clicar em cadastrar e se cadastrar
+O usuário deve acessar o link [link] e iniciar o login nos campos corretos e clicar em logar. Caso o usuário não tenha uma cnnta, ele deve clicar em cadastrar e realizar um novo cadastro.
 
 ## Testes realizados
-Utilização de imagens e descrição do qeu foi testado.
+Utilização de imagens e descrição do que foi testado.
 
 ## Banco de Dados 🗂️
-O banco de dados é firebase
+O banco de dados utilizado é FireBase.
 
 ## Linguagens, dependencias e libs utilizadas 📚
-Javascript
-vue2
-vuetify2
-node.js
+Javascript;
+Vue2;
+Vuetify2;
+HTML5;
+Node.js.
 
-...
-
+[...]
 
 ## Resolvendo Problemas 
-Tela de login mal posicionada
+Tela de login mal posicionada.
+
+[...]
 
 ## Recursos de inseridos 🧰
+📝 Tela de cadastro;
+📝 Tela de calendário;
+📝 Tela de cadastro de receitas;
+📝 Tela de cadastro de relatórios.
 
-📝 Tela de Cadastro
-
-📝 Tela de Calendario
-
-📝 Tela de Cadastro de receitas
-
-📝 Tela de Cadastro de relatorios
-
+[...]
 
 ## Desenvolvedores/Contribuintes:
-Ana 
-
-Felipe
-
-Gabriel
-
-Helena
+Ana Laura de Oliveira Silva; 
+Felipe Roberto Souza Silva;
+Gabriel Verlangieri de Souza;
+Helena Megumi Akyama.
 
 ## Licença
 The MIT License (MIT)
 
-## Copyright ©️ 2023 - Agendamedico
+## Copyright ©️ 2023 - Agendamedica
 
