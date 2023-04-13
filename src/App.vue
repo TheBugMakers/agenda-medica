@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-main class="grey lighten-3">
+    <v-main class="grey lighten-3" id="container">
       <AdminTemplate v-if="user.data"></AdminTemplate>
       <PublicTemplate v-if="!user.data"></PublicTemplate>
     </v-main>

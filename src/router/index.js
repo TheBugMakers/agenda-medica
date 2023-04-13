@@ -22,7 +22,7 @@ const routes = [
   }
 ]
 
-router.beforeEach()
+//router.beforeEach()
 
 const router = new VueRouter({
   mode: 'history',
