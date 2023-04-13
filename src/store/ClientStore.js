@@ -14,9 +14,8 @@ const clientStore = {
         async login({commit}, payload) {
             console.log(payload)
             try {
-                await new ClientController().login(payload.email, payload.password).then(() => {
-                    console.log("deu certo na store")
-                })
+                const user = await new ClientController().login(payload.email, payload.password)
+                console.log(user)
                 commit('SET_LOGGED_IN', "logado")
             } catch(err) {
                 console.log("store error: ", err)
