@@ -33,9 +33,16 @@
       </v-list-item>
       <v-list-item></v-list-item>
       <v-list-item class="mt-10">
-        <v-btn depressed color="error"><v-icon class="mr-1">fa-right-from-bracket</v-icon> Exit </v-btn>
+        <!-- <v-btn depressed color="error"><v-icon class="mr-1">fa-right-from-bracket</v-icon> Exit </v-btn> -->
       </v-list-item>
     </v-list>
+    <template v-slot:append>
+        <div class="pa-5">
+          <v-btn block  color="red" class="white--text">
+            <v-icon class="mr-1">fa-right-from-bracket</v-icon> Logout
+          </v-btn>
+        </div>
+      </template>
   </v-navigation-drawer>
 </template>
 

@@ -16,6 +16,7 @@ export default {
   components: {
     AdminTemplate,
     PublicTemplate,
+
   },
   data: () => ({}),
   computed:{
