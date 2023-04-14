@@ -2,8 +2,8 @@
   <v-card flat id="container" class="mx-auto pa-10"
   style="height: 100vh">
     <v-card-text class="mt-12">
-      <h4 class="text-center">Login</h4>
-      <h6 class="text-center grey--text">Logar na sua conta</h6>
+      <h4 class="text-center display-2">Welcome</h4>
+      <h6 class="text-center grey--text subtitle-1">Logon in your account</h6>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8">
           <v-text-field
@@ -13,28 +13,29 @@
             color="blue"
             autocompleto="false"
             class="mt-16"
+            v-model="email"
           ></v-text-field>
           <v-text-field
-            label="senha"
+            label="password"
             outlined
             dense
             color="blue"
             autocomplete="false"
             type="password"
+            v-model="password"
           ></v-text-field>
           <v-row>
             <v-col cols="12" sm="7">
               <v-checkbox
-                label="Lembrar login"
+                label="Remember me"
                 class="mt-n1"
                 color="blue"
               ></v-checkbox>
             </v-col>
             <v-col cols="12" sm="5">
-              <span class="caption blue--text">Esqueceu sua senha?</span>
+              <span class="caption blue--text">Forgot your password?</span>
             </v-col>
-            <v-btn color="blue" dark block tile to="/profile">Logar</v-btn>
-            <!-- <h5 class="text-center grey--text mt-4 mb-3">Outras formas de login</h5> -->
+            <v-btn color="blue" dark block tile @click="login">Login</v-btn>
           </v-row>
           <v-row> </v-row>
         </v-col>
@@ -46,10 +47,18 @@
 <script>
 export default {
   name: "LoginView",
-
   data: () => ({
-    step: 1,
+    email: '',
+    password: ''
   }),
+
+  methods: {
+    async login() {
+      await this.$store.dispatch('clientModule/login', {
+        email: this.email, password: this.password
+      })
+    }
+  }
 };
 </script>
 

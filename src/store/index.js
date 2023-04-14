@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import clientStore from "@/store/ClientStore"
 
 Vue.use(Vuex)
 
@@ -20,6 +21,6 @@ export default new Vuex.Store({
 
   },
   modules: {
-
+    clientModule: clientStore
   }
 })
