@@ -1,7 +1,7 @@
 <template>
   <v-row id="container" dense>
            <v-col class="pb-0"  cols="2">
-             <!-- <LeftMenu/> -->
+             <LeftMenu></LeftMenu>
            </v-col>
            <v-col class="mt-4">
              <v-sheet color="transparent">
@@ -12,11 +12,11 @@
  </template>
  
  <script>
- // import LeftMenu from "@/components/LeftMenu.vue"
+ import LeftMenu from './LeftMenu.vue';
  export default {
  
    components: {
-     /* LeftMenu, */
+     LeftMenu,
    },
  }
  </script>
