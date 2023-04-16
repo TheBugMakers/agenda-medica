@@ -1,21 +1,23 @@
 <template>
   <v-app>
     <v-main class="grey lighten-3" id="container">
-      <AdminTemplate v-if="user.data"></AdminTemplate>
-      <PublicTemplate v-if="!user.data"></PublicTemplate>
+      <!-- <AdminTemplate v-if="user.data"></AdminTemplate>
+      <PublicTemplate v-if="!user.data"></PublicTemplate> -->
+      <router-view></router-view>
+      
     </v-main>
   </v-app>
 </template>
 
 <script>
-import AdminTemplate from "@/components/AdminTemplate"
-import PublicTemplate from "@/components/PublicTemplate"
+// import AdminTemplate from "@/components/AdminTemplate"
+// import PublicTemplate from "@/components/PublicTemplate"
 
 export default {
   name: 'App',
   components: {
-    AdminTemplate,
-    PublicTemplate,
+    // AdminTemplate,
+    // PublicTemplate,
 
   },
   data: () => ({}),
@@ -31,4 +33,5 @@ export default {
   #container {
     height: 100%;
   }
+
 </style>
