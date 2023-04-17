@@ -83,6 +83,18 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="deleteDialog" max-width="500">
+      <v-card>
+        <v-card-title>Excluir evento</v-card-title>
+        <v-card-text>
+          Tem certeza que deseja excluir este evento?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn color="primary" @click="deleteEvent">Excluir</v-btn>
+          <v-btn @click="deleteDialog = false">Cancelar</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -92,6 +104,8 @@ export default {
     return {
       value: '',
       events: [],
+      deleteDialog: false,
+      selectedEvent: null,
       dialog: false,
       dialogStep: 1,
       newEvent: {
@@ -102,10 +116,20 @@ export default {
         endTime: null
       }
     };
+    
   },
   methods: {
     emEventoClick({ event }) {
-      console.log('Evento clicado:', event);
+      this.selectedEvent = event;
+      this.deleteDialog = true;
+    },
+    deleteEvent() {
+      const index = this.events.indexOf(this.selectedEvent);
+      if (index > -1) {
+        this.events.splice(index, 1);
+      }
+      this.selectedEvent = null;
+      this.deleteDialog = false;
     },
     openDialog() {
       this.dialog = true;
@@ -140,7 +164,16 @@ export default {
       this.events.push(event);
       
       this.dialog = false;
-    }
+    },
+    removePastEvents() {
+      setInterval(() => {
+        const now = new Date();
+        this.events = this.events.filter(evento => new Date(evento.fim) > now);
+      }, 3600000);
+    },
+  },
+  mounted() {
+    this.removePastEvents();
   }
 };
 </script>
