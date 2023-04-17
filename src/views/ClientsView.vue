@@ -1,14 +1,16 @@
 <template>
-  <div class="pa-2">
-    <v-card class="my-1 pa-2">
+  <div class="pa-3">
+    <v-card class="my-3 pa-5 grey lighten-5">
     <v-card-title>
-      <v-text-field
+      <div id="textArea" class="mx-n3">
+        <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
         label="Search"
-        single-line
+        outlined
         hide-details
       ></v-text-field>
+      </div>
     </v-card-title>
     <v-data-table id="tabela"
       :headers="headers"
@@ -48,6 +50,7 @@ export default {
 
 <style scoped>
 ::v-deep .v-data-table-header{
-  background-color:#BBDEFB;
+  background-color:#E0E0E0;
 }
+
 </style>
