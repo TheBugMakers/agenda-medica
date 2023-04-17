@@ -16,6 +16,11 @@ const routes = [
   component: () => import('@/views/CalendarView.vue')
   },
   {
+    path: '/marcarevento',
+    name: 'marcarevento',
+    component: () => import('@/views/MarcarEvento.vue')
+    },
+  {
     path: '/appointment/:appointment_id',
     name: 'appointment_detail',
     component: () => import('@/views/AppointmentDetail.vue')
