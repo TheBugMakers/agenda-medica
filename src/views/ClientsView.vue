@@ -43,6 +43,7 @@ export default {
           { text: 'Contato', value: 'contatos' },
           { text: 'Created date', value: 'created_dates' },
           { text: 'Numero de relatorios', value: 'numero_relatorios' },
+          { text: 'Actions', value: 'actions'},
         ],}
       }
 }
