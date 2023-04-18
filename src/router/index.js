@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/clientview',
     name: 'clientview',
-    component: ()=> import('@/views/ClientsView.vue')
+    component: ()=> import('@/views/ClientView.vue')
   },
 ]
 
