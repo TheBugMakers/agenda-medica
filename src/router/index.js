@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'login',
-    component: () => import('@/views/LoginView.vue')
+    component: () => import('@/components/PublicTemplate.vue')
   },
   {
   path: '/calendar',
@@ -19,7 +19,12 @@ const routes = [
     path: '/appointment/:appointment_id',
     name: 'appointment_detail',
     component: () => import('@/views/AppointmentDetail.vue')
-  }
+  },
+  {
+    path: '/clientview',
+    name: 'clientview',
+    component: ()=> import('@/views/ClientView.vue')
+  },
 ]
 
 //router.beforeEach()

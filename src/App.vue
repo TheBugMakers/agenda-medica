@@ -3,6 +3,8 @@
     <v-main class="grey lighten-3" id="container">
       <AdminTemplate v-if="user.data"></AdminTemplate>
       <PublicTemplate v-if="!user.data"></PublicTemplate>
+      
+      
     </v-main>
   </v-app>
 </template>
@@ -31,4 +33,5 @@ export default {
   #container {
     height: 100%;
   }
+
 </style>
