@@ -38,7 +38,7 @@
     </v-list>
     <template v-slot:append>
         <div class="pa-5">
-          <v-btn block  color="red" class="white--text">
+          <v-btn block @click="logout" color="red" class="white--text">
             <v-icon class="mr-1">fa-right-from-bracket</v-icon> Logout
           </v-btn>
         </div>
@@ -57,7 +57,12 @@ export default {
         { title: "Calendar", icon: "fa-calendar", route: "/" },
       ],
       right: null,
-    };
+    }
   },
+  methods: {
+    async logout() {
+      await this.$store.dispatch("authModule/logOut")
+    }
+  }
 };
 </script>

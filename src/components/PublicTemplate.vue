@@ -1,11 +1,14 @@
 <template>
-  <v-row class="mt-n3"> 
+  <v-row class="mt-n3">
     <v-col class="pb-0" cols="8" style="display: flex; justify-content: center">
       <div id="div">
         <v-row>
           <v-col>
             <div class="mb-5">
-              <p style="font-size: 40px; font-weight: 600">Agenda MED</p>
+              <v-row>
+                <img src="@/favicon.png" width="50" height="60" alt="" class="mr-6 ml-3"/>
+                <p style="font-size: 40px; font-weight: 600">Agenda MED</p>
+              </v-row>
               <h2>Medical appointment system</h2>
             </div>
             <v-row
