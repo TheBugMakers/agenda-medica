@@ -1,57 +1,80 @@
 <template>
-  <div class="pa-3">
-    <v-card class="my-3 pa-5 grey lighten-5">
-    <v-card-title>
-      <div id="textArea" class="mx-n3">
+  <div v-if="loading"></div>
+  <div v-else>
+    <v-card>
+      <v-card-title>
+        Clients
+        <v-spacer></v-spacer>
         <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Search"
-        outlined
-        hide-details
-      ></v-text-field>
-      </div>
-    </v-card-title>
-    <v-data-table id="tabela"
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-      :height="tableHeight"
-    ></v-data-table>
-    
-  </v-card>
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Search by name or email"
+          single-line
+          hide-details
+        ></v-text-field>
+      </v-card-title>
+      <v-data-table  :headers="headers" :items="clients" :search="search" @click:row="getDetail">
+        <template v-slot:item.status="{ item }">
+          <v-chip :color="statusColor(item.status)">
+            {{ item.status }}
+          </v-chip>
+        </template>
+      </v-data-table>
+    </v-card>
   </div>
 </template>
-<script>
 
+<script>
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
 
 export default {
   name: "ClientsView",
-  data () {
-      return {
-        tableHeight:'100%',
-        search: '',
-        headers: [
-          {
-            text: 'user',
-            align: 'start',
-            filterable: false,
-            value: 'User',
-            class: '',
-          },
-          { text: 'Email', value: 'email' },
-          { text: 'Contato', value: 'contatos' },
-          { text: 'Created date', value: 'created_dates' },
-          { text: 'Numero de relatorios', value: 'numero_relatorios' },
-          { text: 'Actions', value: 'actions'},
-        ],}
+  components: {
+    SpinnerLoading,
+  },
+  data() {
+    return {
+      headers: [
+        { text: "Name", value: "name" },
+        { text: "Email", value: "email" },
+        { text: "Phone", value: "phone", filterable: false },
+        { text: "Documents", value: "documents.length", filterable: false },
+        { text: "Medicine", value: "medicine.length", filterable: false },
+        {
+          text: "Appointments",
+          value: "appointments.length",
+          filterable: false,
+        },
+        { text: "Status", value: "status", filterable: false },
+      ],
+      search: ''
+    };
+  },
+  computed: {
+    clients() {
+      return this.$store.state.clientModule.clients;
+    },
+    loading() {
+      return this.$store.state.loading;
+    },
+  },
+  async created() {
+    await this.$store.dispatch("clientModule/getClients");
+    console.log(this.clients);
+  },
+  methods: {
+    statusColor(status) {
+      if (status == "active") {
+        return 'green';
+      } else if (status == "invited") {
+        return 'grey';
+      } else {
+        return 'red';
       }
-}
+    },
+    getDetail(item) {
+      this.$router.push('/clients/' + item.id)
+    }
+  },
+};
 </script>
-
-<style scoped>
-::v-deep .v-data-table-header{
-  background-color:#E0E0E0;
-}
-
-</style>

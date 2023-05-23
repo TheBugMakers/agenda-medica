@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clientStore from "@/store/ClientStore"
 import authStore from '@/store/AuthStore'
+import appointmentStore from './AppointmentStore'
 
 Vue.use(Vuex)
 
@@ -10,7 +11,15 @@ export default new Vuex.Store({
     user: {
       data: null,
       loggedIn: false
-    }
+    },
+    loading: false,
+    error: {
+      visible: false,
+      text: "",
+      icon: "",
+      color: "",
+    },
+    dialog: false
   },
   getters: {
     user(state) {
@@ -26,6 +35,15 @@ export default new Vuex.Store({
       state.user.data = null
       state.user.loggedIn = false
     },
+    SET_LOADING(state, payload) {
+      state.loading = payload
+    },
+    SET_ERROR(state, payload) {
+      state.error = payload
+    },
+    SET_DIALOG(state, payload) {
+      state.dialog = payload
+    }
   },
   actions: {
     async logIn({commit}, data){
@@ -35,9 +53,29 @@ export default new Vuex.Store({
     async logOut(){
       this.commit('LOGGOUT_USER', null)
     },
+    setAlert({ commit }, payload) {
+      commit("SET_ALERT", {
+        text: payload.text,
+        icon: payload.icon,
+        visible: true,
+        variant: payload.variant,
+      });
+      setTimeout(() => {
+        commit("SET_ALERT", {
+          visible: false,
+          text: "",
+          icon: "",
+          variant: "",
+        });
+      }, 4000);
+    },
+    setDialog({commit}, payload) {
+      commit('SET_DIALOG', payload)
+    }
   },
   modules: {
     clientModule: clientStore,
-    authModule: authStore
+    authModule: authStore,
+    appointmentModule: appointmentStore
   }
 })

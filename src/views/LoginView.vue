@@ -29,7 +29,7 @@
         </v-col>
       </v-row>
       <v-row class="justify-center">
-        <v-btn text color="blue">Don't have an account?</v-btn>
+        <v-btn text color="blue" @click="setDialog">Don't have an account?</v-btn>
         <v-btn text color="blue">Forget your password?</v-btn>
       </v-row>
     </v-card-text>
@@ -37,19 +37,22 @@
 </template>
 
 <script>
+
 export default {
   name: "LoginView",
   data: () => ({
     email: "",
     password: "",
   }),
-
   methods: {
     async login() {
       await this.$store.dispatch("authModule/logIn", {
         email: this.email,
         password: this.password,
       });
+    },
+    setDialog() {
+      this.$store.dispatch("setDialog", true);
     },
   },
 };
