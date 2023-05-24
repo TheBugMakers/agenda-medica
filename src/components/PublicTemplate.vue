@@ -1,11 +1,14 @@
 <template>
-  <v-row class="mt-n3"> 
+  <v-row class="mt-n3">
     <v-col class="pb-0" cols="8" style="display: flex; justify-content: center">
       <div id="div">
         <v-row>
           <v-col>
             <div class="mb-5">
-              <p style="font-size: 40px; font-weight: 600">Agenda MED</p>
+              <v-row>
+                <img src="@/favicon.png" width="50" height="60" alt="" class="mr-6 ml-3"/>
+                <p style="font-size: 40px; font-weight: 600">Agenda MED</p>
+              </v-row>
               <h2>Medical appointment system</h2>
             </div>
             <v-row
@@ -31,21 +34,23 @@
       </div>
     </v-col>
     <v-col class="pb-0" cols="4">
-      <LoginView></LoginView>
+      <VerificationView v-if="this.$route.name == 'verification'"></VerificationView>
+      <LoginView v-else></LoginView>
+      <v-dialog v-model="dialog" max-width="500px" persistent>
+        <ClientsForm></ClientsForm>
+      </v-dialog>
     </v-col>
   </v-row>
 </template>
 
 <script>
 import LoginView from "@/views/LoginView.vue";
+import ClientsForm from '@/components/ClientsForm.vue';
+import VerificationView from "@/views/VerificationView.vue";
 
 export default {
   data: () => ({
     services: [
-      {
-        icon: "mdi-google-analytics",
-        text: "Data analytics",
-      },
       {
         icon: " mdi-calendar",
         text: "Online Scheduling",
@@ -62,6 +67,13 @@ export default {
   }),
   components: {
     LoginView,
+    ClientsForm,
+    VerificationView
+  },
+  computed: {
+    dialog() {
+      return this.$store.state.dialog;
+    },
   },
 };
 </script>

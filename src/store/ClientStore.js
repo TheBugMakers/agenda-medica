@@ -1,27 +1,49 @@
 import ClientController from "@/controllers/ClientController";
+const clientController = new ClientController();
 
 const clientStore = {
-    namespaced: true,
-    state: () => ({
-        loggedUser: null
-    }),
-    mutations: {
-        SET_LOGGED_IN(state, payload) {
-            state.loggedUser = payload;
-        }
+  namespaced: true,
+  state: () => ({
+    clients: [],
+    selectedClient: null
+  }),
+  mutations: {
+    SET_CLIENTS(state, payload) {
+      state.clients = payload;
     },
-    actions: {
-        async login({commit}, payload) {
-            console.log(payload)
-            try {
-                const user = await new ClientController().login(payload.email, payload.password)
-                console.log(user)
-                commit('SET_LOGGED_IN', "logado")
-            } catch(err) {
-                console.log("store error: ", err)
-            }
-        }
+    SET_CLIENT(state, payload) {
+        state.selectedClient = payload
     }
-}
+  },
+  actions: {
+    async getClients({ commit }) {
+        console.log("getClients")
+        commit('SET_LOADING', true, { root: true })
+      try {
+        const clients = await clientController.getAll();
+        commit("SET_CLIENTS", clients);
+      } catch (e) {
+        throw new Error(e);
+      } finally {
+        commit('SET_LOADING', false, { root: true })
+      }
+    },
 
-export default clientStore
+    async getClientById({commit}, id) {
+        console.log('get client ==>>', id)
+        commit('SET_LOADING', true, { root: true })
+      try {
+        const client = await clientController.getClientById(id)
+        commit("SET_CLIENT", client);
+        console.log('CLIENT ==>>', client)
+      } catch (e) {
+        throw new Error(e);
+      } finally {
+        commit('SET_LOADING', false, { root: true })
+      }
+    }
+  },
+  getters: {},
+};
+
+export default clientStore;

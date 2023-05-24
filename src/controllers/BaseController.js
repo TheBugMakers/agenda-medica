@@ -25,7 +25,9 @@ export default class Controller {
 
   async readOne(col, docId) {
     const ref = doc(db, `${col}/${docId}`);
-    return getDoc(ref);
+    const res  = (await getDoc(ref)).data()
+    console.log("RES: ", res)
+    return res
   }
 
   async update(col, docId, payload) {

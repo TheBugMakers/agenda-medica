@@ -1,10 +1,8 @@
 <template>
   <v-app>
-    <v-main class="grey lighten-3" id="container">
-      <AdminTemplate v-if="user.data"></AdminTemplate>
-      <PublicTemplate v-if="!user.data"></PublicTemplate>
-      
-      
+    <v-main class="grey lighten-2" id="container">
+      <PublicTemplate v-if="user == null"></PublicTemplate>
+      <AdminTemplate v-else></AdminTemplate>
     </v-main>
   </v-app>
 </template>
@@ -23,7 +21,7 @@ export default {
   data: () => ({}),
   computed:{
     user() {
-      return this.$store.state.user
+      return this.$store.state.authModule.currentUser
     },
   },
 };
