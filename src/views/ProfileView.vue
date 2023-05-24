@@ -31,7 +31,7 @@
                 <td>{{ "Medicine:" }}</td>
                 <td>{{ user.medicine.length }}</td>
               </tr>
-              <tr>
+              <tr v-if="user.appointments">
                 <td>{{ "Appointments:" }}</td>
                 <td>{{ user.appointments.length }}</td>
               </tr>
@@ -49,7 +49,7 @@
       </v-col>
       <v-divider vertical></v-divider>
       <v-col cols="6">
-        <div v-if="user.medicine.length > 0">
+        <div v-if="user.medicine">
           <h4>Medicines</h4>
           <v-data-table
             hide-default-footer
@@ -71,7 +71,7 @@
             </v-chip>
           </template>
         </v-data-table>
-        <div v-if="user.documents.length > 0">
+        <div v-if="user.documents">
           <h4 class="mt-5">Documents</h4>
           <v-data-table
             hide-default-footer
