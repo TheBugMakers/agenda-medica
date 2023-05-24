@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clientStore from "@/store/ClientStore"
 import authStore from '@/store/AuthStore'
-import appointmentStore from './AppointmentStore'
+import appointmentStore from '@/store//AppointmentStore'
 
 Vue.use(Vuex)
 
