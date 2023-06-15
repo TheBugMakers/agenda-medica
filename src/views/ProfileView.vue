@@ -37,7 +37,7 @@
               </tr>
               <tr>
                 <td>{{ "Created date:" }}</td>
-                <td>{{ user.created_date }}</td>
+                <td>{{ convertCreatedDate(user.created_date) }}</td>
               </tr>
               <tr>
                 <td>{{ "Status:" }}</td>
@@ -49,7 +49,7 @@
       </v-col>
       <v-divider vertical></v-divider>
       <v-col cols="6">
-        <div v-if="user.medicine.length > 0">
+        <div v-if="user.medicine && user.medicine.length > 0">
           <h4>Medicines</h4>
           <v-data-table
             hide-default-footer
@@ -71,7 +71,7 @@
             </v-chip>
           </template>
         </v-data-table>
-        <div v-if="user.documents.length > 0">
+        <div v-if="user.documents && user.documents.length > 0">
           <h4 class="mt-5">Documents</h4>
           <v-data-table
             hide-default-footer
@@ -118,6 +118,20 @@ export default {
     },
   },
   methods: {
+    convertCreatedDate(created_date) {
+      if (created_date != null) {
+        var data = new Date(created_date),
+          dia = data.getDate().toString(),
+          diaF = dia.length == 1 ? "0" + dia : dia,
+          mes = (data.getMonth() + 1).toString(), //+1 pois no getMonth Janeiro começa com zero.
+          mesF = mes.length == 1 ? "0" + mes : mes,
+          anoF = data.getFullYear(),
+          finalDate = `${diaF}/${mesF}/${anoF}`;
+        return finalDate;
+      } else {
+        return "undefined";
+      }
+    },
     statusColor(status) {
       if (status == "concluded") {
         return "green";
