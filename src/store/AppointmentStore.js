@@ -17,12 +17,10 @@ const appointmentStore = {
   },
   actions: {
     async getAppointments({ commit }) {
-        console.log("getAppointments")
         commit('SET_LOADING', true, { root: true })
       try {
         const appointments = await appointmentController.getAll();
         commit("SET_APPOINTMENTS", appointments);
-        console.log('APPOINTMENTS STORE ==>>', appointments)
       } catch (e) {
         throw new Error(e);
       } finally {
@@ -31,12 +29,10 @@ const appointmentStore = {
     },
 
     async getAppointmentById({commit}, id) {
-        console.log('get appointment ==>>', id)
         commit('SET_LOADING', true, { root: true })
       try {
         const appointment = await appointmentController.getAppointmentById(id)
         commit("SET_APPOINTMENT", appointment);
-        console.log('appointment ==>>', appointment)
       } catch (e) {
         throw new Error(e);
       } finally {
@@ -45,7 +41,6 @@ const appointmentStore = {
     },
 
     async getAppointmentsByUserId({commit}, userId) {
-      console.log("getAppointments", userId)
         commit('SET_LOADING', true, { root: true })
       try {
         const appointments = await appointmentController.getByUserId(userId);

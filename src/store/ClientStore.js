@@ -19,7 +19,6 @@ const clientStore = {
   },
   actions: {
     async getClients({ commit }) {
-      console.log("getClients");
       commit("SET_LOADING", true, { root: true });
       try {
         const clients = await clientController.getAll();
@@ -36,7 +35,6 @@ const clientStore = {
       try {
         const client = await clientController.getClientById(id);
         commit("SET_CLIENT", client);
-        console.log("CLIENT ==>>", client);
       } catch (e) {
         throw new Error(e);
       } finally {
@@ -47,7 +45,6 @@ const clientStore = {
     async upload({ commit }, payload) {
       commit("SET_LOADING", true, { root: true });
       try {
-        console.log('ENTROU NO UPLOAD STOREdata')
         await controller.upload(
           payload.path,
           payload.file,
@@ -55,7 +52,6 @@ const clientStore = {
           payload.type,
           payload.data
         );
-        console.log("UPLOAD ==>>", payload);
       } catch (e) {
         throw new Error(e);
       } finally {

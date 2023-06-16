@@ -62,7 +62,6 @@ export default {
   },
   async created() {
     await this.$store.dispatch("clientModule/getClients");
-    console.log(this.clients);
   },
   methods: {
     statusColor(status) {

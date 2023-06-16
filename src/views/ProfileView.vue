@@ -187,7 +187,6 @@ export default {
       }
     },
     getDocumentDetail(item) {
-      console.log("document", item.link);
       window.open(item.link);
     },
     edit() {
@@ -203,7 +202,6 @@ export default {
         this.$store.state.authModule.currentUser.id
       );
     }
-    console.log("USER ==>>", this.$store.state.authModule.currentUser);
   },
 };
 </script>

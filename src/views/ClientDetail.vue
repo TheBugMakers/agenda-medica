@@ -188,11 +188,9 @@ export default {
       }
     },
     getDocumentDetail(item) {
-      console.log("document", item.link);
       window.open(item.link);
     },
     uploadMedicine() {
-      console.log("socorro")
       this.$store.dispatch('setDialog', true)
     }
   },
@@ -205,7 +203,6 @@ export default {
       "appointmentModule/getAppointmentsByUserId",
       this.$route.params.client_id
     );
-    console.log("selected client ==>>", this.client);
   },
 };
 </script>

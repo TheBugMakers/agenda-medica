@@ -90,7 +90,6 @@ router.beforeEach(async (to, from, next) => {
   if (user === null) {
     await store.dispatch("authModule/autoLogin");
     let user_after_autoLogin = store.state.authModule.currentUser;
-    console.log('USER === NULL ROUTER')
     if (user_after_autoLogin == null && to.name != "login") {
       if (to.meta.requiresAuth == false) {
         next();
@@ -104,7 +103,6 @@ router.beforeEach(async (to, from, next) => {
 
   const u = store.state.authModule.currentUser;
   if (u != null) {
-    console.log('USER != NULL ROUTER')
     // Verify if user has acccess to route
     const user_role = u.user_role;
     if (to.meta.roles == null || to.meta.roles == undefined) {

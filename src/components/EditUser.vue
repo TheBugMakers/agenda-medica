@@ -48,9 +48,8 @@ export default {
         user.id == "PeB7IIqa6WMKXD8DlBEdFDk3FUi1"
           ? this.$store.dispatch("updatePhone", isAdmin)
           : this.$store.dispatch("updatePhone", isClient);
-        console.log("ENTROU NO EDIT");
       } catch (e) {
-        console.log(e);
+        throw new Error(e)
       } finally {
         location.reload()
       }

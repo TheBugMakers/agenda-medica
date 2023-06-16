@@ -42,9 +42,6 @@ export default {
       await this.$store.dispatch("authModule/logOut");
     },
   },
-  created() {
-    console.log(this.menu)
-  }
 };
 </script> 
 

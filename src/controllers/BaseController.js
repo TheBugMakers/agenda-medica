@@ -39,14 +39,12 @@ export default class Controller {
   async readOne(col, docId) {
     const ref = doc(db, `${col}/${docId}`);
     const res = (await getDoc(ref)).data();
-    console.log("RES: ", res);
     return res;
   }
 
   async upload(path, file, clientId, type, data) {
     const storageRef = ref(storage, path);
     if (type == "medicine") {
-      console.log('CONTROLLER TYPE MEDICINE')
       await uploadBytes(storageRef, file).then((response) => {
         getDownloadURL(storageRef).then((url) => {
           const updateClientDoc = doc(db, "client", clientId);
@@ -66,10 +64,8 @@ export default class Controller {
             }),
           });
         });
-        console.log("image response", response);
       });
     } else {
-      console.log('CONTROLLER TYPE REPORT')
       await uploadBytes(storageRef, file).then((response) => {
         getDownloadURL(storageRef).then((url) => {
           const updateClientDoc = doc(db, "client", clientId);
@@ -82,7 +78,6 @@ export default class Controller {
             }),
           });
         });
-        console.log("image response", response);
       });
     }
   }

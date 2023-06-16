@@ -76,12 +76,11 @@ export default new Vuex.Store({
       commit('SET_DIALOG', payload)
     },
     async updatePhone({commit}, payload) {
-      console.log('PAYLOAD ==>>', payload)
       commit('SET_LOADING', true)
       try {
         await controller.update(payload.col, payload.id, payload.data)
       } catch (e) {
-        console.log(e)
+        throw new Error(e)
       } finally {
         commit('SET_LOADING', false)
         commit('SET_DIALOG', false)

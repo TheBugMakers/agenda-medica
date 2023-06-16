@@ -9,7 +9,6 @@ export default class AppointmentController extends Controller {
     const appointments = snapshot.docs.map((doc) =>
     ({ ...doc.data(), id: doc.id })
   );
-  console.log("APPOINTMENTS ==>>", appointments)
   return appointments
   }
 
@@ -23,7 +22,6 @@ export default class AppointmentController extends Controller {
     const appointments = snapshot.docs.map((doc) =>
     ({ ...doc.data(), id: doc.id })
   );
-  console.log("APPOINTMENTS ==>>", appointments)
   return appointments
   }
 }

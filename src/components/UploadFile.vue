@@ -124,7 +124,6 @@ export default {
   },
   methods: {
     async Upload() {
-      console.log("ENTROU NO UPLOAD", this.File);
       try {
         let doctor = this.anotherDoctor ? this.doctor : "Doctor Z";
         //let type = this.isMedicine ? "medicine" : "report";
@@ -153,7 +152,7 @@ export default {
             });
         await this.$store.dispatch("clientModule/upload", finalFile);
       } catch (e) {
-        console.log(e);
+        throw new Error(e);
       }
     },
     Cancel() {
