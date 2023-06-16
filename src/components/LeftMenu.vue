@@ -1,5 +1,5 @@
 <template>
-  <v-card width="200" flat height="100vh">
+  <v-card width="200" id="menu" flat height="100vh">
     <v-card-title class="ml-5">AgendaMED</v-card-title>
     <v-divider></v-divider>
     <v-list flat class="ml-3 pt-12">
@@ -47,3 +47,9 @@ export default {
   }
 };
 </script> 
+
+<style>
+  #menu {
+    position: fixed;
+  }
+</style>

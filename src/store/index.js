@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 import clientStore from "@/store/ClientStore"
 import authStore from '@/store/AuthStore'
 import appointmentStore from './AppointmentStore'
+import Controller from '@/controllers/BaseController'
+
+const controller = new Controller();
 
 Vue.use(Vuex)
 
@@ -71,6 +74,18 @@ export default new Vuex.Store({
     },
     setDialog({commit}, payload) {
       commit('SET_DIALOG', payload)
+    },
+    async updatePhone({commit}, payload) {
+      console.log('PAYLOAD ==>>', payload)
+      commit('SET_LOADING', true)
+      try {
+        await controller.update(payload.col, payload.id, payload.data)
+      } catch (e) {
+        console.log(e)
+      } finally {
+        commit('SET_LOADING', false)
+        commit('SET_DIALOG', false)
+      }
     }
   },
   modules: {
