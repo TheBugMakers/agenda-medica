@@ -29,20 +29,29 @@
         </v-col>
       </v-row>
       <v-row class="justify-center">
-        <v-btn text color="blue" @click="setDialog">Don't have an account?</v-btn>
-        <v-btn text color="blue">Forget your password?</v-btn>
+        <v-btn text color="blue" @click="setDialog(true)"
+          >Don't have an account?</v-btn
+        >
+        <v-dialog v-model="dialog" max-width="500px" persistent>
+          <div v-if="isClient"><ClientsForm /></div>
+          <div v-else><reset-password></reset-password></div>
+        </v-dialog>
+        <v-btn text color="blue" @click="setDialog(false)">Forget your password?</v-btn>
       </v-row>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import ClientsForm from "@/components/ClientsForm.vue";
+import ResetPassword from "@/components/ResetPassword.vue";
 
 export default {
   name: "LoginView",
   data: () => ({
     email: "",
     password: "",
+    isClient: null
   }),
   methods: {
     async login() {
@@ -51,8 +60,15 @@ export default {
         password: this.password,
       });
     },
-    setDialog() {
+    setDialog(isClient) {
+      this.isClient = isClient
       this.$store.dispatch("setDialog", true);
+    },
+  },
+  components: { ClientsForm, ResetPassword },
+  computed: {
+    dialog() {
+      return this.$store.state.dialog;
     },
   },
 };

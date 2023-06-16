@@ -31,16 +31,19 @@
       </div>
     </v-col>
     <v-col class="pb-0" cols="4">
-      <LoginView></LoginView>
+      <LoginView v-if="isLogin"></LoginView>
+      <verification-view v-else></verification-view>
     </v-col>
   </v-row>
 </template>
 
 <script>
 import LoginView from "@/views/LoginView.vue";
+import VerificationView from '@/views/VerificationView.vue';
 
 export default {
   data: () => ({
+    isLogin: true,
     services: [
       {
         icon: "mdi-google-analytics",
@@ -62,7 +65,11 @@ export default {
   }),
   components: {
     LoginView,
+    VerificationView,
   },
+  created() {
+    this.$route.name == 'verification' ? this.isLogin = false : this.isLogin = true
+  }
 };
 </script>
 

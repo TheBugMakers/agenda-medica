@@ -60,7 +60,7 @@
               </tr>
               <tr>
                 <td>{{ "Created date:" }}</td>
-                <td>{{ client.created_date }}</td>
+                <td>{{ convertCreatedDate(client.created_date) }}</td>
               </tr>
               <tr>
                 <td>{{ "Status:" }}</td>
@@ -162,6 +162,20 @@ export default {
     }
   },
   methods: {
+    convertCreatedDate(created_date) {
+      if (created_date != null) {
+        const data = new Date(created_date);
+        let dia = data.getDate().toString();
+        let diaF = dia.length == 1 ? "0" + dia : dia;
+        let mes = (data.getMonth() + 1).toString();
+        let mesF = mes.length == 1 ? "0" + mes : mes;
+        let anoF = data.getFullYear();
+        const finalDate = `${diaF}/${mesF}/${anoF}`;
+        return finalDate;
+      } else {
+        return "undefined";
+      }
+    },
     statusColor(status) {
       if (status == "concluded") {
         return "green";
