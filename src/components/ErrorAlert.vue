@@ -7,7 +7,7 @@
      rounded="pill"
      top
    >
-   <v-icon>{{ this.icon }}</v-icon>
+   <v-avatar><v-icon>{{ this.icon }}</v-icon></v-avatar>
      {{ this.text }}
    </v-snackbar>
 </template>

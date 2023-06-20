@@ -1,5 +1,13 @@
 <template>
   <v-card>
+    <v-card-title v-if="user.email != 'super@admin.com'"
+      ><v-btn color="primary" @click="createAppointment"
+        >new appointment</v-btn
+      ></v-card-title
+    >
+    <v-dialog v-model="dialog" persistent max-width="500px"
+      ><AppointmentForm></AppointmentForm
+    ></v-dialog>
     <v-row class="fill-height ma-1">
       <v-col>
         <v-sheet height="64">
@@ -49,12 +57,11 @@
             v-model="focus"
             color="primary"
             :events="events"
-            :event-color="getEventColor"
+            :event-color="getEventColor()"
             :type="type"
             @click:event="showEvent"
             @click:more="viewDay"
             @click:date="viewDay"
-            @change="updateRange"
           ></v-calendar>
           <v-menu
             v-model="selectedOpen"
@@ -64,17 +71,24 @@
           >
             <v-card color="grey lighten-4" min-width="350px" flat>
               <v-toolbar :color="selectedEvent.color" dark>
-                <v-btn icon>
-                  <v-icon>mdi-pencil</v-icon>
+                <v-btn
+                  v-if="selectedEvent.name == 'pending'"
+                  @click="confirm(event)"
+                  icon
+                >
+                  <v-icon>mdi-check-circle-outline</v-icon>
                 </v-btn>
-                <v-toolbar-title v-html="selectedEvent.name"></v-toolbar-title>
-                <v-spacer></v-spacer>
-                <v-btn icon>
-                  <v-icon>mdi-heart</v-icon>
+                <v-btn
+                  v-if="selectedEvent.name == 'pending'"
+                  @click="cancel"
+                  icon
+                >
+                  <v-icon>mdi-close-circle-outline</v-icon>
                 </v-btn>
-                <v-btn icon>
-                  <v-icon>mdi-dots-vertical</v-icon>
-                </v-btn>
+                <v-toolbar-title
+                  v-html="selectedEvent.name"
+                  class="text-center"
+                ></v-toolbar-title>
               </v-toolbar>
               <v-card-text>
                 <span v-html="selectedEvent.details"></span>
@@ -93,8 +107,13 @@
 </template>
 
 <script>
+import AppointmentForm from "@/components/AppointmentForm";
+
 export default {
   name: "CalendarView",
+  components: {
+    AppointmentForm,
+  },
   data: () => ({
     focus: "",
     type: "month",
@@ -107,29 +126,98 @@ export default {
     selectedElement: null,
     selectedOpen: false,
     events: [],
-    colors: [
-      "blue",
-      'green',
-      'red',
-      'grey'
-    ],
-    names: [
-      'Confirmed',
-      'Concluded',
-      'Canceled',
-      'Pending'
-    ],
+    colors: ["blue", "green", "red", "grey"],
+    names: ["Confirmed", "Concluded", "Canceled", "Pending"],
   }),
+  computed: {
+    dialog() {
+      return this.$store.state.dialog;
+    },
+    userEvents() {
+      console.log(
+        "USER EVENTS",
+        this.$store.state.appointmentModule.appointments
+      );
+      return this.$store.state.appointmentModule.appointments;
+    },
+    user() {
+      return this.$store.state.authModule.currentUser;
+    },
+  },
+  async created() {
+    const currentUser = this.user.id;
+    currentUser == "PeB7IIqa6WMKXD8DlBEdFDk3FUi1"
+      ? await this.$store.dispatch("appointmentModule/getAppointments")
+      : await this.$store.dispatch(
+          "appointmentModule/getAppointmentsByUserId",
+          currentUser
+        );
+
+    const events = [];
+    for (var i = 0; i < this.userEvents.length; i++) {
+      const event = this.userEvents[i];
+      const eventTime = event.time.split(":");
+      const eventEnd = `${Number(eventTime[0]) + 1}:${eventTime[1]}`;
+      var eventColor = "";
+      console.log("EVENT STATUS DO CARALHO ==>>", event);
+      if (event.status == "confirmed") {
+        eventColor = "blue";
+      } else if (event.status == "concluded") {
+        eventColor = "green";
+      } else if (event.status == "canceled") {
+        eventColor = "red";
+      } else {
+        eventColor = "grey";
+      }
+      const finalEvenStart = `${event.day} ${event.time}`;
+      const finalEventEnd = `${event.day} ${eventEnd}`;
+      events.push({
+        name: event.status,
+        start: finalEvenStart,
+        end: finalEventEnd,
+        color: eventColor,
+        timed: false,
+        id: event.id
+      });
+    }
+
+    console.log("EVENTOOOOOOOOOO", events);
+    this.events = events;
+  },
   mounted() {
     this.$refs.calendar.checkChange();
   },
   methods: {
+    confirm(event) {
+      console.log(event)
+      /* this.$store.dispatch("appointmentModule/update", {
+        id: this.selectedElement.id,
+        status: "confirmed",
+      }); */
+    },
+    cancel() {
+      this.$store.dispatch("appointmentModule/update", {
+        id: this.selectedElement.id,
+        status: "canceled",
+      });
+    },
+    createAppointment() {
+      this.$store.dispatch("setDialog", true);
+    },
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";
     },
     getEventColor(event) {
-      return event.color;
+      if (event == "Confirmed" || event == "confirmed") {
+        return "blue";
+      } else if (event == "Concluded" || event == "concluded") {
+        return "green";
+      } else if (event == "Canceled" || event == "canceled") {
+        return "red";
+      } else {
+        return "grey";
+      }
     },
     setToday() {
       this.focus = "";
@@ -141,6 +229,7 @@ export default {
       this.$refs.calendar.next();
     },
     showEvent({ nativeEvent, event }) {
+      console.log("EVENT ==>>", event);
       const open = () => {
         this.selectedEvent = event;
         this.selectedElement = nativeEvent.target;
@@ -158,7 +247,7 @@ export default {
 
       nativeEvent.stopPropagation();
     },
-    updateRange({ start, end }) {
+    /* updateRange({ start, end }) {
       const events = [];
 
       const min = new Date(`${start.date}T00:00:00`);
@@ -183,7 +272,7 @@ export default {
       }
 
       this.events = events;
-    },
+    }, */
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a;
     },

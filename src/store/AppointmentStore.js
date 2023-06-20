@@ -20,6 +20,7 @@ const appointmentStore = {
         commit('SET_LOADING', true, { root: true })
       try {
         const appointments = await appointmentController.getAll();
+        console.log('appointments : ', appointments)
         commit("SET_APPOINTMENTS", appointments);
       } catch (e) {
         throw new Error(e);
@@ -49,6 +50,30 @@ const appointmentStore = {
         throw new Error(e);
       } finally {
         commit('SET_LOADING', false, { root: true })
+      }
+    },
+
+    async createAppointment({commit}, payload) {
+      commit('SET_LOADING', true, { root: true })
+      try {
+        await appointmentController.createAppointment(payload);
+      } catch (e) {
+        throw new Error(e);
+      } finally {
+        commit('SET_LOADING', false, { root: true })
+        commit('SET_DIALOG', false, { root: true })
+      }
+    },
+
+    async update({commit}, payload) {
+      commit('SET_LOADING', true, { root: true })
+      try {
+        await appointmentController.update(payload);
+      } catch (e) {
+        throw new Error(e);
+      } finally {
+        commit('SET_LOADING', false, { root: true })
+        commit('SET_DIALOG', false, { root: true })
       }
     }
   },

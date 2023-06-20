@@ -91,4 +91,11 @@ export default class Controller {
     const ref = doc(db, `${col}/${docId}`);
     await deleteDoc(ref);
   }
+
+  async getDates() {
+    const docRef = doc(db, 'dates/xjpYNBquKxYEqPRwp3vt');
+    const snapshot = await getDoc(docRef)
+    console.log("snapshot ==>>", snapshot.data().dates)
+    return snapshot.data().dates
+  }
 }

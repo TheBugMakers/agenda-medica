@@ -1,6 +1,6 @@
 <template>
   <v-card width="200" id="menu" flat height="100vh">
-    <v-card-title class="ml-5">AgendaMED</v-card-title>
+    <v-card-title> <v-img src="@/assets/logo.png" width="10" class="ma-2 ml-n1"></v-img>AgendaMED</v-card-title>
     <v-divider></v-divider>
     <v-list flat class="ml-3 pt-12">
       <v-list-item-group color="primary">

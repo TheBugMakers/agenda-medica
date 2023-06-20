@@ -22,7 +22,8 @@ export default new Vuex.Store({
       icon: "",
       color: "",
     },
-    dialog: false
+    dialog: false,
+    dates: []
   },
   getters: {
     user(state) {
@@ -46,7 +47,13 @@ export default new Vuex.Store({
     },
     SET_DIALOG(state, payload) {
       state.dialog = payload
-    }
+    },
+     SET_ALERT(state, payload) {
+      state.error = payload;
+     },
+     SET_DATES(state, payload) {
+      state.dates = payload;
+     }
   },
   actions: {
     async logIn({commit}, data){
@@ -61,14 +68,14 @@ export default new Vuex.Store({
         text: payload.text,
         icon: payload.icon,
         visible: true,
-        variant: payload.variant,
+        color: payload.color,
       });
       setTimeout(() => {
         commit("SET_ALERT", {
           visible: false,
           text: "",
           icon: "",
-          variant: "",
+          color: "",
         });
       }, 4000);
     },
@@ -84,6 +91,17 @@ export default new Vuex.Store({
       } finally {
         commit('SET_LOADING', false)
         commit('SET_DIALOG', false)
+      }
+    },
+    async getDates({commit}) {
+      commit('SET_LOADING', true)
+      try {
+        const dates = await controller.getDates();
+        commit('SET_DATES', dates)
+      } catch (e) {
+        throw new Error(e)
+      } finally {
+        commit('SET_LOADING', false)
       }
     }
   },
