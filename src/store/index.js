@@ -2,10 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clientStore from "@/store/ClientStore"
 import authStore from '@/store/AuthStore'
+<<<<<<< HEAD
 import appointmentStore from './AppointmentStore'
 import Controller from '@/controllers/BaseController'
 
 const controller = new Controller();
+=======
+import appointmentStore from '@/store//AppointmentStore'
+>>>>>>> main
 
 Vue.use(Vuex)
 
@@ -22,8 +26,12 @@ export default new Vuex.Store({
       icon: "",
       color: "",
     },
+<<<<<<< HEAD
     dialog: false,
     dates: []
+=======
+    dialog: false
+>>>>>>> main
   },
   getters: {
     user(state) {
@@ -47,6 +55,7 @@ export default new Vuex.Store({
     },
     SET_DIALOG(state, payload) {
       state.dialog = payload
+<<<<<<< HEAD
     },
      SET_ALERT(state, payload) {
       state.error = payload;
@@ -54,6 +63,9 @@ export default new Vuex.Store({
      SET_DATES(state, payload) {
       state.dates = payload;
      }
+=======
+    }
+>>>>>>> main
   },
   actions: {
     async logIn({commit}, data){
@@ -68,19 +80,28 @@ export default new Vuex.Store({
         text: payload.text,
         icon: payload.icon,
         visible: true,
+<<<<<<< HEAD
         color: payload.color,
+=======
+        variant: payload.variant,
+>>>>>>> main
       });
       setTimeout(() => {
         commit("SET_ALERT", {
           visible: false,
           text: "",
           icon: "",
+<<<<<<< HEAD
           color: "",
+=======
+          variant: "",
+>>>>>>> main
         });
       }, 4000);
     },
     setDialog({commit}, payload) {
       commit('SET_DIALOG', payload)
+<<<<<<< HEAD
     },
     async updatePhone({commit}, payload) {
       commit('SET_LOADING', true)
@@ -103,6 +124,8 @@ export default new Vuex.Store({
       } finally {
         commit('SET_LOADING', false)
       }
+=======
+>>>>>>> main
     }
   },
   modules: {

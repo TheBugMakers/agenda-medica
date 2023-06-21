@@ -12,11 +12,10 @@
  </template>
  
  <script>
- import LeftMenu from './LeftMenu.vue';
- export default {
- 
-   components: {
-     LeftMenu,
-   },
- }
- </script>
+import LeftMenu from "@/components/LeftMenu.vue";
+export default {
+  components: {
+    LeftMenu,
+  },
+};
+</script>
