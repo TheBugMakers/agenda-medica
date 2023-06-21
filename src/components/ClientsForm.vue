@@ -98,10 +98,6 @@ export default {
         await this.$store.dispatch("authModule/createUser", user);
       } else {
         this.$store.dispatch("setDialog", false);
-        this.$store.dispatch(
-          "loadError",
-          "Error in create new client: all the fields are required"
-        );
       }
     },
   },

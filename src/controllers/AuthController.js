@@ -43,7 +43,7 @@ export default class AuthController extends Controller {
         return sendPasswordResetEmail(
             auth,
             email,
-            actionClientSettings()
+            actionClientSettings
         );
     }
 

@@ -2,7 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clientStore from "@/store/ClientStore"
 import authStore from '@/store/AuthStore'
+<<<<<<< HEAD
+import appointmentStore from './AppointmentStore'
+import Controller from '@/controllers/BaseController'
+
+const controller = new Controller();
+=======
 import appointmentStore from '@/store//AppointmentStore'
+>>>>>>> main
 
 Vue.use(Vuex)
 
@@ -19,7 +26,12 @@ export default new Vuex.Store({
       icon: "",
       color: "",
     },
+<<<<<<< HEAD
+    dialog: false,
+    dates: []
+=======
     dialog: false
+>>>>>>> main
   },
   getters: {
     user(state) {
@@ -43,7 +55,17 @@ export default new Vuex.Store({
     },
     SET_DIALOG(state, payload) {
       state.dialog = payload
+<<<<<<< HEAD
+    },
+     SET_ALERT(state, payload) {
+      state.error = payload;
+     },
+     SET_DATES(state, payload) {
+      state.dates = payload;
+     }
+=======
     }
+>>>>>>> main
   },
   actions: {
     async logIn({commit}, data){
@@ -58,19 +80,52 @@ export default new Vuex.Store({
         text: payload.text,
         icon: payload.icon,
         visible: true,
+<<<<<<< HEAD
+        color: payload.color,
+=======
         variant: payload.variant,
+>>>>>>> main
       });
       setTimeout(() => {
         commit("SET_ALERT", {
           visible: false,
           text: "",
           icon: "",
+<<<<<<< HEAD
+          color: "",
+=======
           variant: "",
+>>>>>>> main
         });
       }, 4000);
     },
     setDialog({commit}, payload) {
       commit('SET_DIALOG', payload)
+<<<<<<< HEAD
+    },
+    async updatePhone({commit}, payload) {
+      commit('SET_LOADING', true)
+      try {
+        await controller.update(payload.col, payload.id, payload.data)
+      } catch (e) {
+        throw new Error(e)
+      } finally {
+        commit('SET_LOADING', false)
+        commit('SET_DIALOG', false)
+      }
+    },
+    async getDates({commit}) {
+      commit('SET_LOADING', true)
+      try {
+        const dates = await controller.getDates();
+        commit('SET_DATES', dates)
+      } catch (e) {
+        throw new Error(e)
+      } finally {
+        commit('SET_LOADING', false)
+      }
+=======
+>>>>>>> main
     }
   },
   modules: {

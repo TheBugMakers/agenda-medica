@@ -34,22 +34,19 @@
       </div>
     </v-col>
     <v-col class="pb-0" cols="4">
-      <VerificationView v-if="this.$route.name == 'verification'"></VerificationView>
-      <LoginView v-else></LoginView>
-      <v-dialog v-model="dialog" max-width="500px" persistent>
-        <ClientsForm></ClientsForm>
-      </v-dialog>
+      <LoginView v-if="isLogin"></LoginView>
+      <verification-view v-else></verification-view>
     </v-col>
   </v-row>
 </template>
 
 <script>
 import LoginView from "@/views/LoginView.vue";
-import ClientsForm from '@/components/ClientsForm.vue';
-import VerificationView from "@/views/VerificationView.vue";
+import VerificationView from '@/views/VerificationView.vue';
 
 export default {
   data: () => ({
+    isLogin: true,
     services: [
       {
         icon: " mdi-calendar",
@@ -67,14 +64,11 @@ export default {
   }),
   components: {
     LoginView,
-    ClientsForm,
-    VerificationView
+    VerificationView,
   },
-  computed: {
-    dialog() {
-      return this.$store.state.dialog;
-    },
-  },
+  created() {
+    this.$route.name == 'verification' ? this.isLogin = false : this.isLogin = true
+  }
 };
 </script>
 

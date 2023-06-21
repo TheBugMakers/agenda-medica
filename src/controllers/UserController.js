@@ -41,7 +41,7 @@ export default class UserController extends Controller {
       );
 
       // Delete Auth Link
-      await super.delete(AUTHLINK_COLLECTION, userFromAuthLink.id);
+      await super.delete(AUTHLINK_COLLECTION, userFromAuthLink.id)
 
       await super.update('client', currentLoggedUser.uid, { 'status': 'active' })
 

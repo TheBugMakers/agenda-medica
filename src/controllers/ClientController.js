@@ -12,7 +12,7 @@ export default class ClientController extends Controller {
         return response;
       })
       .catch((error) => {
-        console.log(error);
+        throw new Error(error);
       });
     return userResponse;
   }
@@ -22,7 +22,6 @@ export default class ClientController extends Controller {
     const clients = snapshot.docs.map((doc) =>
     ClientModel.fromFirestore({ ...doc.data(), id: doc.id })
   );
-  console.log("CLIENTS ==>>", clients)
   return clients
   }
 

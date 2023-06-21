@@ -1,5 +1,7 @@
 <template>
-  <div v-if="loading"></div>
+  <div v-if="loading">
+    <SpinnerLoading></SpinnerLoading>
+  </div>
   <div v-else>
     <v-card>
       <v-card-title>
@@ -60,7 +62,6 @@ export default {
   },
   async created() {
     await this.$store.dispatch("clientModule/getClients");
-    console.log(this.clients);
   },
   methods: {
     statusColor(status) {

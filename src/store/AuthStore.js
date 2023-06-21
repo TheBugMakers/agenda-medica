@@ -34,18 +34,15 @@ const authStore = {
   },
   actions: {
     async autoLogin({ commit }) {
-      console.log("ENTROU NO AUTOLOGIN")
       try {
         commit("SET_LOADING_USER", true);
         const user = await authController.autoLogin();
         if (user != null) {
-          console.log('USER != NULL STORE', user)
           if (user.email == "super@admin.com") {
             const currentUser = await baseController.readOne(
               "doctor",
               'PeB7IIqa6WMKXD8DlBEdFDk3FUi1'
             );
-            console.log('É ADMIN STORE')
             commit("SET_CURRENT_USER", currentUser);
             commit('SET_MENU', [
               { title: "Clients", icon: "fa-users", path: "/clients" },
@@ -53,7 +50,6 @@ const authStore = {
               { title: "Calendar", icon: "fa-calendar", path: "/calendar" },
             ])
           } else {
-            console.log('USER == NULL store')
             const currentUser = await clientController.getClientById(auth.currentUser.uid)
             commit("SET_CURRENT_USER", currentUser);
             commit('SET_MENU', [
@@ -69,19 +65,16 @@ const authStore = {
       }
     },
     async logIn({ commit }, payload) {
-      console.log('ENTROU NO LOGIN')
       try {
         commit("SET_LOADING_USER", true);
         await authController
           .login(payload.email, payload.password)
           .then(async (authUser) => {
-            console.log('AUTH USER ==>>', authUser)
             if (payload.email == "super@admin.com") {
               const currentUser = await baseController.readOne(
                 "doctor",
                 authUser.user.uid
               );
-              console.log('CURRENT USER ==> ',  currentUser)
               commit("SET_CURRENT_USER", currentUser);
               commit('SET_MENU', [
                 { title: "Clients", icon: "fa-users", path: "/clients" },
@@ -111,7 +104,6 @@ const authStore = {
       try {
         await authController.logout();
         commit("LOGGOUT_USER");
-        console.log("deslogou");
       } catch (e) {
         console.error(e);
       }
@@ -120,13 +112,11 @@ const authStore = {
     async createUser({ commit }, payload) {
       commit("SET_LOADING", true, { root: true });
       try {
-        console.log(payload)
         const userEmail = payload.email;
         const user = await usersController.getUserByEmail(userEmail);
         if (user.length > 0) {
           throw new Error("Email already in use");
         } else {
-          console.log(userEmail)
           const res = await usersController.createAuthUser(payload);
           await usersController.sendSignInLink(userEmail, res);
         }

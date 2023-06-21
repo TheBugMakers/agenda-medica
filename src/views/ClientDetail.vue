@@ -1,6 +1,24 @@
 <template>
+  <div v-if="loading">
+    <spinner-loading></spinner-loading>
+  </div>
+<div v-else class="mt-4">
   <v-card>
-    <v-card-title>Client: {{ client.name }}</v-card-title>
+    <v-row>
+      <v-col cols="9">
+        <v-card-title>{{ client.name }}</v-card-title>
+      </v-col>
+      <v-col class="mt-3 mr-0">
+        <v-btn color="primary" @click="uploadMedicine">Upload document</v-btn>
+        <v-dialog
+                v-model="dialog"
+                max-width="500px"
+                persistent
+              >
+                <UploadFile/>
+              </v-dialog>
+      </v-col>
+    </v-row>
     <v-row class="ma-2">
       <v-col cols="6">
         <v-simple-table>
@@ -42,7 +60,7 @@
               </tr>
               <tr>
                 <td>{{ "Created date:" }}</td>
-                <td>{{ client.created_date }}</td>
+                <td>{{ convertCreatedDate(client.created_date) }}</td>
               </tr>
               <tr>
                 <td>{{ "Status:" }}</td>
@@ -53,7 +71,7 @@
         </v-simple-table>
       </v-col>
       <v-divider vertical></v-divider>
-      <v-col cols="6">
+      <v-col style="overflow-y:scroll; height:600px;" cols="6">
         <div v-if="client.medicine.length > 0">
           <h4>Medicines</h4>
           <v-data-table
@@ -86,16 +104,29 @@
             :items="client.documents"
             @click:row="getDocumentDetail"
           >
+          <template v-slot:item.type="{ item }">
+            <v-chip outlined :color="typeColor(item.type)">
+              {{ item.type }}
+            </v-chip>
+          </template>
           </v-data-table>
         </div>
       </v-col>
     </v-row>
   </v-card>
+</div>
 </template>
 
 <script>
+import SpinnerLoading from "@/components/SpinnerLoading.vue";
+import UploadFile from "@/components/UploadFile.vue";
+
 export default {
   name: "ClientDetail",
+  components: {
+    SpinnerLoading,
+    UploadFile
+},
   data: () => {
     return {
       medicineHeaders: [
@@ -123,8 +154,28 @@ export default {
     appointments() {
       return this.$store.state.appointmentModule.appointments;
     },
+    loading() {
+      return this.$store.state.loading;
+    },
+    dialog() {
+      return this.$store.state.dialog
+    }
   },
   methods: {
+    convertCreatedDate(created_date) {
+      if (created_date != null) {
+        const data = new Date(created_date);
+        let dia = data.getDate().toString();
+        let diaF = dia.length == 1 ? "0" + dia : dia;
+        let mes = (data.getMonth() + 1).toString();
+        let mesF = mes.length == 1 ? "0" + mes : mes;
+        let anoF = data.getFullYear();
+        const finalDate = `${diaF}/${mesF}/${anoF}`;
+        return finalDate;
+      } else {
+        return "undefined";
+      }
+    },
     statusColor(status) {
       if (status == "concluded") {
         return "green";
@@ -136,6 +187,13 @@ export default {
         return "grey";
       }
     },
+    typeColor(type) {
+      if (type == "Medicine" || type == 'medicine') {
+        return "blue";
+      } else {
+        return "orange";
+      }
+    },
     getAppointmentDetail(item) {
       if (item.status == "concluded") {
         window.open(item.report);
@@ -144,9 +202,11 @@ export default {
       }
     },
     getDocumentDetail(item) {
-      console.log("document", item.link);
       window.open(item.link);
     },
+    uploadMedicine() {
+      this.$store.dispatch('setDialog', true)
+    }
   },
   async created() {
     await this.$store.dispatch(
@@ -157,7 +217,6 @@ export default {
       "appointmentModule/getAppointmentsByUserId",
       this.$route.params.client_id
     );
-    console.log("selected client ==>>", this.client);
   },
 };
 </script>
